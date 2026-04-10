@@ -8,7 +8,7 @@ const dbPath = process.env.DATABASE_PATH || '/root/.cloudcli/auth.db';
 const headerUser = process.env.X_AUTH_REQUEST_USER || 'admin';
 const headerEmail = process.env.X_AUTH_REQUEST_EMAIL || 'admin@example.com';
 // git_name is often the same as the username in these setups
-const gitName = headerUser; 
+const gitName = headerUser;
 
 const dbDir = path.dirname(dbPath);
 if (!fs.existsSync(dbDir)) {
@@ -37,7 +37,7 @@ try {
 
   if (!userExists) {
     console.log(`[BOOTSTRAP] User "${headerUser}" not found. Seeding from Auth headers...`);
-    
+
     const insert = db.prepare(`
       INSERT INTO users (
         username, 
@@ -49,10 +49,10 @@ try {
       ) VALUES (?, ?, ?, ?, ?, ?)
     `);
 
-    // password_hash is NOT NULL in schema, but since you use OAuth2 Proxy, 
+    // password_hash is NOT NULL in schema, but since you use OAuth2 Proxy,
     // we use a placeholder 'oauth2_managed' as the app will bypass local pw checks.
     insert.run(headerUser, 'oauth2_managed', gitName, headerEmail, 1, 1);
-    
+
     console.log(`[BOOTSTRAP] Successfully provisioned user: ${headerUser}`);
   } else {
     console.log(`[BOOTSTRAP] User "${headerUser}" already exists in database.`);
@@ -62,4 +62,3 @@ try {
 } catch (err) {
   console.error('[BOOTSTRAP] Database Error:', err.message);
 }
-
