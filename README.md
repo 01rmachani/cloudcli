@@ -15,9 +15,20 @@ A containerized deployment of [CloudCLI](https://github.com/cloudcli-ai/cloudcli
 
 ```
 cloudcli/
-├── Dockerfile          # Multi-stage Docker build configuration
-├── seed-user.js        # User provisioning script for OAuth2 integration
-└── README.md          # This file
+├── .github/
+│   └── workflows/
+│       └── docker.yml      # CI: build & push Docker image; lint seed-user.js
+├── Dockerfile              # Container definition (Node.js 22, healthcheck, volume)
+├── docker-compose.yml      # Local development compose file
+├── seed-user.js            # User provisioning script for OAuth2 integration
+├── package.json            # Dev tooling (ESLint, Prettier)
+├── .eslintrc.json          # ESLint rules for seed-user.js
+├── .prettierrc             # Prettier formatting config
+├── .env.example            # Environment variable reference (copy to .env)
+├── .gitignore              # Git ignore rules
+├── .dockerignore           # Docker build context ignore rules
+├── CLAUDE.md               # AI assistant guide for this repo
+└── README.md               # This file
 ```
 
 ## Prerequisites

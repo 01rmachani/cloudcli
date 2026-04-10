@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Docs / assets (not needed in image)
+README.md
+screenshot.png
+CLAUDE.md
+
+# Env files
+.env
+.env.local
+.env.example
+
+# Node (no local node_modules; packages installed globally in image)
+node_modules/
+npm-debug.log*
+
+# CI
+.github/
+
+# SQLite databases
+*.db
+*.sqlite
