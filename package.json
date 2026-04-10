@@ -1,0 +1,19 @@
+{
+  "name": "cloudcli-docker",
+  "version": "1.0.0",
+  "description": "Docker deployment wrapper for CloudCLI with OAuth2 user seeding",
+  "private": true,
+  "scripts": {
+    "lint": "eslint seed-user.js",
+    "lint:fix": "eslint seed-user.js --fix",
+    "format": "prettier --write seed-user.js",
+    "format:check": "prettier --check seed-user.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

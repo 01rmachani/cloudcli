@@ -16,7 +16,12 @@ ENV DATABASE_PATH=/root/.cloudcli/auth.db
 WORKDIR /app
 COPY seed-user.js /usr/local/bin/seed-user.js
 
+VOLUME /root/.cloudcli
+
 EXPOSE 3001
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
+  CMD wget -qO- http://localhost:3001 || exit 1
 
 CMD ["sh", "-c", "node /usr/local/bin/seed-user.js && cloudcli start"]
 
